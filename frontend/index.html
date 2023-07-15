@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta lang="en-US">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Blogwap</h1>
+  <p>
+    All new technical and educational blogs available here
+  </p>
+</div>
+
+<div class="container my-5">
+  <ul class="nav nav-pills" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#technology">Technology</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#education">Education</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#blogwap">Blogwap</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content py-3">
+    <div id="home" class="container tab-pane active"><br>
+      <h3>HOME</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <div id="technology" class="container tab-pane fade"><br>
+      <h3>Menu 1</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+    <div id="education" class="container tab-pane fade"><br>
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+
+    <div id="blogwap" class="container tab-pane fade"><br>
+      <h3>Post A Blog</h3>
+      <form class="w-75">
+        <div class="mb-4">
+          <input type="text" name="title" class="form-control" value="Robotics mechanism">
+        </div>
+        <div class="mb-4">
+          <input type="file" name="image" class="form-control" accept="image/*">
+        </div>
+        <div class="mb-4">
+          <textarea class="form-control" name="content" rows="20">
+            This is my first technical blog
+          </textarea>
+        </div>
+
+        <div class="mb-4">
+          <button type="submit" class="btn btn-primary px-4 py-1 rounded-0">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron text-center">
+  <p>
+    www.blogwap.com
+    </p>
+</div>
+<script>
+  $(document).ready(function(){
+    $("form").submit(function(e){
+      e.preventDefault();
+      // ajax
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:1144/blog",
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        success: function(response){
+          console.log(response);
+        },
+        error: function(error){
+          console.log(error.responseJSON);
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
